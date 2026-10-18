@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Разминка: бейдж участника</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="tasks.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <h1 class="title">Бейдж участника</h1>
+    <p class="lead">Пятнадцать задач. Код пишем в <code>tasks.js</code>, результат смотрим в консоли и на этой странице.</p>
+
+    <article class="badge">
+      <p class="badge__name">Имя участника</p>
+      <p class="badge__course">Курс веб-разработки</p>
+      <span class="badge__status">не отмечен</span>
+    </article>
+
+    <div class="panel">
+      <p class="panel__title">Поле для задачи 13</p>
+      <input class="field" id="nameInput" type="text" placeholder="Введите имя">
+      <p class="hint">Имя должно появляться в бейдже по мере ввода.</p>
+    </div>
+
+    <div class="panel">
+      <p class="panel__title">Кнопки для задач 11, 12 и 15</p>
+      <button class="btn" id="statusBtn">Отметиться</button>
+      <button class="btn btn--ghost" id="themeBtn">Тёмная тема</button>
+      <p class="hint">Задача 15: клавиша Escape возвращает всё в исходное состояние.</p>
+    </div>
+  </div>
+</body>
+</html>
