@@ -23,30 +23,39 @@ console.log("Файл подключён");
    Объявите две переменные: имя участника и номер группы.
    Имя меняться не будет, номер группы — тоже.
    Подсказка: если значение не переназначается, берут const.   */
+const participant = "Amir";
+const groupNumber = 521;
 
-// console.log("1:", participant, groupNumber);
+console.log("1:", participant, groupNumber);
 
 
 /* --- 2 -------------------------------------------------------
    На курсе 12 занятий, прошло 7. Посчитайте, сколько осталось.
    Результат сохраните в переменную left.                       */
+const totalLessons = 12;
+const doneLessons = 7;
 
-// console.log("2:", left);
+const left = totalLessons - doneLessons;
+
+console.log("2:", left);
 
 
 /* --- 3 -------------------------------------------------------
    Посчитайте, какой процент курса уже пройден.
    Округлите до целого.
    Подсказка: Math.round(число) округляет по правилам.           */
+const percent = Math.round((doneLessons / totalLessons) * 100);
 
-// console.log("3:", percent);
+console.log("3:", percent);
 
 
 /* --- 4 -------------------------------------------------------
    Соберите строку вида "Алия, группа 11-901: пройдено 58%".
    Используйте шаблонную строку с обратными кавычками.          */
 
-// console.log("4:", line);
+const line = `${participant}, группа ${groupNumber}: пройдено ${percent}%.`;
+
+console.log("4:", line);
 
 
 /* --- 5 -------------------------------------------------------
@@ -54,9 +63,10 @@ console.log("Файл подключён");
    Подсказка: остаток от деления на 2 даёт 0 у чётных чисел,
    оператор остатка записывается знаком %.                      */
 
-const lessonNumber = 7;
+const lessonNumber = 5;
+const isEven = lessonNumber % 2 === 0;
 
-// console.log("5:", isEven);
+console.log("5:", isEven);
 
 
 /* ============================================================
@@ -68,14 +78,22 @@ const lessonNumber = 7;
    "Привет, Алия!". Вызовите её и выведите результат.
    Подсказка: функция сама ничего не делает, пока её не вызвали. */
 
-// console.log("6:", greet("Алия"));
+function greet(name) {
+   return `Привет, ${name}!`; 
+}
+
+console.log("6:", greet(participant));
 
 
 /* --- 7 -------------------------------------------------------
    Функция progress(done, total) возвращает процент выполнения,
    округлённый до целого. Переиспользуйте идею из задачи 3.      */
 
-// console.log("7:", progress(7, 12));
+function progress(done, total) {
+   return Math.round((done / total) * 100);
+}
+
+console.log("7:", progress(7, 12));
 
 
 /* --- 8 -------------------------------------------------------
@@ -84,14 +102,34 @@ const lessonNumber = 7;
    "почти готово", если больше или ровно половина.
    Подсказка: внутри можно вызвать progress из задачи 7.         */
 
-// console.log("8:", statusText(3, 12), statusText(7, 12));
+function statusText(done, total) {
+   const resultProgress = progress(done, total);
+   if (resultProgress < 50) {
+      return "в процессе";
+   } else {
+      return "почти готово";
+   }
+}
+
+// function statusText(done, total) {
+//    // тернарный оператор
+//    return progress(done, total) < 50 ? "в процессе" : "почти готово"
+// }
+
+console.log("8:", statusText(3, 12), statusText(7, 12));
 
 
 /* --- 9 -------------------------------------------------------
    Перепишите функцию из задачи 6 в стрелочную запись.
    Назовите её greetArrow, поведение должно остаться тем же.    */
 
-// console.log("9:", greetArrow("группа"));
+const greetArrow = (name) => {
+   return `Привет, ${name}!`; 
+}
+
+// const greetArrow2 = (name) => `Привет, ${name}!`;
+
+console.log("9:", greetArrow("группа"));
 
 
 /* ============================================================
@@ -103,6 +141,9 @@ const lessonNumber = 7;
    из первой задачи.
    Подсказка: document.querySelector(".класс") и textContent.    */
 
+   const nameEl = document.querySelector(".badge__name");
+   nameEl.textContent = participant;
+
 
 /* --- 11 ------------------------------------------------------
    По клику на кнопку #statusBtn текст в .badge__status
@@ -110,12 +151,25 @@ const lessonNumber = 7;
    Подсказка: сначала найдите оба элемента в переменные,
    потом повесьте обработчик: btn.addEventListener("click", ...) */
 
+   const statusBtn = document.querySelector("#statusBtn");
+   const statusEl = document.querySelector(".badge__status");
+
+   statusBtn.addEventListener("click", () => {
+      statusEl.textContent = "отмечен";
+   })
+
 
 /* --- 12 ------------------------------------------------------
    По клику на #themeBtn переключайте класс is-dark у body.
    Стили уже написаны, добавлять ничего не нужно.
    Подсказка: classList.toggle добавляет класс, если его нет,
    и убирает, если он есть.                                      */
+
+   const themeBtn = document.querySelector("#themeBtn");
+
+   themeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("is-dark");
+   })
 
 
 /* ============================================================
@@ -126,7 +180,13 @@ const lessonNumber = 7;
    Пока пользователь печатает в поле #nameInput, имя в бейдже
    должно меняться сразу, без нажатия кнопок.
    Подсказка: событие называется "input", а введённый текст
-   лежит в event.target.value.                                   */
+   лежит в event.target.value.                                */
+
+   const nameInput = document.querySelector("#nameInput");
+
+   nameInput.addEventListener("input", (event) => {
+      nameEl.textContent = event.target.value;
+   })
 
 
 /* --- 14. Событие mouseenter ----------------------------------
